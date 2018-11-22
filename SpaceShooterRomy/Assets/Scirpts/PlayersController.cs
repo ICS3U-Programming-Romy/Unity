@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Is used to make a list of floats. For organization. All floats for player boundaries in the game.
 [System.Serializable]
 public class Boundary
 {
@@ -9,17 +10,32 @@ public class Boundary
 
 public class PlayersController : MonoBehaviour
 {
-    private Rigidbody rb;
+    private Rigidbody rb; //Used to make life easier. Instead of writing rigidbody.whatever everytime. I only write rb.whatever.
     public float speed;
     public float tilt;
-    public Boundary boundary;
+    public Boundary boundary; //Reference to the Boundary class (with the list of floats).
+
+    //Stuff for the code to fire a "Blot" shot.
+    public GameObject shot;
+    public Transform shotSpawn;
+    private float nextFire;
+    public float fireRate;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>(); //References the rigidbody component for "private Rigidbody rb;".
     }
 
-    void FixedUpdate()
+    void Update() //The code to fire a "Bolt" shot.
+    {
+        if (Input.GetButton("Fire1") && Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+        }
+    }
+
+    void FixedUpdate() //All for movement.
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
