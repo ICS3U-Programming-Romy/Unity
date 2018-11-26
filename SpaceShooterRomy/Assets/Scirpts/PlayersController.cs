@@ -20,18 +20,27 @@ public class PlayersController : MonoBehaviour
     public Transform shotSpawn;
     private float nextFire;
     public float fireRate;
+    public GameObject shot2;
+    private float nextFire2;
+    public float fireRate2;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>(); //References the rigidbody component for "private Rigidbody rb;".
     }
 
-    void Update() //The code to fire a "Bolt" shot.
-    {
+    void Update() //The code to fire a "Bolt" and "Bolt2" shot.
+    {//Bolt
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+        }
+        //Bolt2
+        if (Input.GetKeyDown("space") && Time.time > nextFire2)
+        {
+            nextFire2 = Time.time + fireRate2;
+            Instantiate(shot2, shotSpawn.position, shotSpawn.rotation);
         }
     }
 
