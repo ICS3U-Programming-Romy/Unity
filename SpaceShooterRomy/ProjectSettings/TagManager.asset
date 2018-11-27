@@ -15,6 +15,7 @@ TagManager:
   - PlayerRay
   - Rocket
   - Boundary
+  - ScoreText
   layers:
   - Default
   - TransparentFX

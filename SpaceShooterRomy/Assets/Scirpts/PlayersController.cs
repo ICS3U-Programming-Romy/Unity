@@ -24,23 +24,29 @@ public class PlayersController : MonoBehaviour
     private float nextFire2;
     public float fireRate2;
 
+    //Creates a container for the AudioSource component
+    private AudioSource audioSource;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>(); //References the rigidbody component for "private Rigidbody rb;".
+        audioSource = GetComponent<AudioSource>(); //References the player weapon laser sound effects.
     }
 
-    void Update() //The code to fire a "Bolt" and "Bolt2" shot.
+    void Update() //The code to fire a "Bolt" and "Bolt2" shot. With sound effects
     {//Bolt
         if (Input.GetButton("Fire1") && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
             Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
+            audioSource.Play();
         }
         //Bolt2
         if (Input.GetKeyDown("space") && Time.time > nextFire2)
         {
             nextFire2 = Time.time + fireRate2;
             Instantiate(shot2, shotSpawn.position, shotSpawn.rotation);
+            audioSource.Play();
         }
     }
 
