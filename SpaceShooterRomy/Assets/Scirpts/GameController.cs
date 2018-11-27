@@ -26,10 +26,8 @@ public class GameController : MonoBehaviour
     void Start ()
         {
         StartCoroutine(SpawnWaves()); //Starts the wave spawning.
-
         score = 0; //Sets score to 0 at the beginning of the game.
         UpdateScore();
-        
         //Sets the gameover and restart (Allowing for restart) functions to false. So the player doesn't get a gameover when they start the game.
         gameOver = false;
         reStart = false;

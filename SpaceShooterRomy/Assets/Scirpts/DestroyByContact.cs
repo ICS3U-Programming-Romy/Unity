@@ -29,12 +29,15 @@ public class DestroyByContact : MonoBehaviour
     void OnTriggerEnter(Collider other)
         {
             //Prevents the Boundary from activating the rest of the code. Will ignore the Boundary's collider
-            if (other.tag == "Boundary")
-                {
-                 return;
-                }
+        if (other.CompareTag ("Boundary") || other.CompareTag("Enemy"))
+            {
+              return;
+            }
         //Creates an explosion when it hits another collider
-        Instantiate(explosion, transform.position, transform.rotation);
+        if (explosion !=null)
+        {
+            Instantiate(explosion, transform.position, transform.rotation);
+        }
         //Creates a player explosion when it hits the player
         if (other.tag == "Player")
             {
