@@ -1036,7 +1036,7 @@ MonoBehaviour:
   shotSpawn: {fileID: 1644849174}
   fireRate: 0.25
   shot2: {fileID: 1287846094146086, guid: eff90a8e0eec80a41985c63e5d5486e7, type: 2}
-  fireRate2: 0.5
+  fireRate2: 0.25
 --- !u!82 &1332739845
 AudioSource:
   m_ObjectHideFlags: 0
