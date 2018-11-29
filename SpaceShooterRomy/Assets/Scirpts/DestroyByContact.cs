@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//In the comments, "It" refers to the object that this script is attached to.
+
 public class DestroyByContact : MonoBehaviour
 {
     //References to explosion effects.
