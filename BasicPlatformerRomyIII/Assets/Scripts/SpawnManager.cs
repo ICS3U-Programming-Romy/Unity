@@ -6,7 +6,7 @@ public class SpawnManager : MonoBehaviour {
 
        //A bunch of stuff for platforms
     public int maxPlatforms = 20; //max amount of platforms that can spawn at once
-    public GameObject platform; //reference for the platform gameObject
+    public GameObject[] platforms; //reference for the platform gameObject
 
     //how far they can spawn away from eachother
     public float horizontalMin = 7.5f;
@@ -29,7 +29,8 @@ public class SpawnManager : MonoBehaviour {
         {
             //Randomly spawns platforms
             Vector2 randomPosition = originPosition + new Vector2(Random.Range(horizontalMin, horizontalMax), Random.Range(verticalMin, verticalMax));
-            Instantiate(platform, randomPosition, Quaternion.identity);
+            //Instantiate(platform, randomPosition, Quaternion.identity);
+            Instantiate(platforms[UnityEngine.Random.Range(0, 2)], randomPosition, Quaternion.identity);
             originPosition = randomPosition;
         }
     }
