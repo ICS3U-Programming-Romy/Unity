@@ -52,8 +52,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxPlatforms: 20
-  platform: {fileID: 1135460793742470, guid: 325fab29727c61744a7d5d4c51971a9b, type: 2}
-  horizontalMin: 7.5
-  horizontalMax: 14
-  verticalMin: -6
-  verticalMax: 5
+  platforms:
+  - {fileID: 1135460793742470, guid: 3f1f377a2a52d2444ae972eb1c387f3d, type: 2}
+  - {fileID: 1135460793742470, guid: 325fab29727c61744a7d5d4c51971a9b, type: 2}
+  - {fileID: 1135460793742470, guid: ee42b68bce8175d45a7d90a03f9bb84c, type: 2}
+  horizontalMin: 6.5
+  horizontalMax: 13
+  verticalMin: -5
+  verticalMax: 4

@@ -5,7 +5,7 @@ using UnityEngine;
 public class CoinSpawn : MonoBehaviour
 {
     public Transform[] coinSpawns;
-    public GameObject coin;
+    public GameObject[] coin;
 
 	void Start ()
     {
@@ -19,7 +19,7 @@ public class CoinSpawn : MonoBehaviour
             int coinFlip = Random.Range(0, 2);
             if (coinFlip > 0)
             {
-                Instantiate(coin, coinSpawns[i].position, Quaternion.identity);
+                Instantiate(coin[UnityEngine.Random.Range(0, 1)], coinSpawns[i].position, Quaternion.identity);
             }
         }
     }
