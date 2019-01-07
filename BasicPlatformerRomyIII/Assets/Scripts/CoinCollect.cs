@@ -8,7 +8,6 @@ public class CoinCollect : MonoBehaviour
     public int scoreValue;
     private GameController gameController;
 
-
     void Start()
     {
         //Finds the GameController Object
@@ -23,12 +22,18 @@ public class CoinCollect : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D (Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player")) //when the "Player" touches the coin, it destroys the coin.
         {
-            Destroy(gameObject);
             gameController.addScore(scoreValue); //added for increasing score.
+            gameController.soundYeet(); //used to play sound after the coin is collected
+            Kill();
         }
+    }
+
+    void Kill()
+    {
+        Destroy(gameObject);
     }
 }

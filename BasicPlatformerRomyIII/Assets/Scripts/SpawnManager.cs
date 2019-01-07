@@ -30,7 +30,7 @@ public class SpawnManager : MonoBehaviour {
             //Randomly spawns platforms
             Vector2 randomPosition = originPosition + new Vector2(Random.Range(horizontalMin, horizontalMax), Random.Range(verticalMin, verticalMax));
             //Instantiate(platform, randomPosition, Quaternion.identity);
-            Instantiate(platforms[UnityEngine.Random.Range(0, 2)], randomPosition, Quaternion.identity);
+            Instantiate(platforms[UnityEngine.Random.Range(0, 3)], randomPosition, Quaternion.identity);
             originPosition = randomPosition;
         }
     }

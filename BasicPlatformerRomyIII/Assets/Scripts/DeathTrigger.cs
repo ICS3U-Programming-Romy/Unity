@@ -1,19 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DeathTrigger : MonoBehaviour
 {
-    void OnTriggerEnter2D (Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Application.LoadLevel(Application.loadedLevel);
-        }
+    public Text GameOverText;
+    public Text RestartText;
+    private bool reStart;
 
-        if (other.gameObject.CompareTag("ground"))
+    void Start()
+    {
+        reStart = false;
+        GameOverText.text = "";
+        RestartText.text = "";
+    }
+
+    void Update()
+    {
+        if (reStart) //Script that allows the player to restart.
         {
-            Destroy(other.gameObject);
+            GameOverText.text = "Game Over"; //Shows the player "GAME OVER"
+            RestartText.text = "Press 'R' to Restart"; //Shows the restart text.
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                Application.LoadLevel(Application.loadedLevel);
+            }
         }
     }
+
+       void OnTriggerEnter2D (Collider2D other)
+       {
+            if (other.gameObject.CompareTag("Player"))
+            {
+            reStart = true;
+            }
+
+            if (other.gameObject.CompareTag("ground"))
+            {
+                Destroy(other.gameObject);
+            }
+        }
 }
+
