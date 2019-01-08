@@ -19,7 +19,7 @@ public class PlatformFall : MonoBehaviour {
             Invoke ("Fall", fallDelay);
 
     }
-
+    //sets isKinematic to false, to allow the platform to fall.
     void Fall()
     {
         rb2d.isKinematic = false;

@@ -10,12 +10,13 @@ public class GameController : MonoBehaviour {
     //Stuff for all the text in the Canvas
     public Text ScoreText; //references the GUIText component
     public int score; //Player's score
+    //variables for the coin sound effects
     public GameObject SoundSource;
     public AudioSource audioData;
 
     void Start()
     {
-        audioData = GetComponent<AudioSource>();
+        audioData = GetComponent<AudioSource>(); //gets the audio source at the beginning of the game
         score = 0; //Sets score to 0 at the beginning of the game.
         UpdateScore();
         //Used to get the ScoreText in the canvas.
@@ -39,7 +40,7 @@ public class GameController : MonoBehaviour {
     {
         ScoreText.text = "Score: " + score;
     }
-
+    //Allows the sound to be played, when the player picks up the coin.
     public void soundYeet()
     {
         audioData.Play(0);

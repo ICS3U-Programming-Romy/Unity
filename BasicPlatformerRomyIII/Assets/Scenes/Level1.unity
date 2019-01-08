@@ -680,11 +680,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4792031450476288, guid: 325fab29727c61744a7d5d4c51971a9b, type: 2}
       propertyPath: m_RootOrder
-<<<<<<< HEAD
       value: 6
-=======
-      value: 7
->>>>>>> 0157e661969f8ed0aa365e2f5e058774eb61fec3
       objectReference: {fileID: 0}
     - target: {fileID: 61940633685446432, guid: 325fab29727c61744a7d5d4c51971a9b,
         type: 2}
@@ -700,24 +696,10 @@ Prefab:
       propertyPath: fallDelay
       value: 100
       objectReference: {fileID: 0}
-<<<<<<< HEAD
     - target: {fileID: 61940633685446432, guid: 325fab29727c61744a7d5d4c51971a9b,
         type: 2}
       propertyPath: m_Material
       value: 
-=======
-    - target: {fileID: 4739878813495524, guid: 325fab29727c61744a7d5d4c51971a9b, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4945192189877358, guid: 325fab29727c61744a7d5d4c51971a9b, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4989929461527792, guid: 325fab29727c61744a7d5d4c51971a9b, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
->>>>>>> 0157e661969f8ed0aa365e2f5e058774eb61fec3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114166007025050352, guid: 325fab29727c61744a7d5d4c51971a9b, type: 2}
@@ -1120,13 +1102,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.9890461, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-<<<<<<< HEAD
   m_Father: {fileID: 1485600899}
   m_RootOrder: 8
-=======
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
->>>>>>> 0157e661969f8ed0aa365e2f5e058774eb61fec3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1074225183
 GameObject:
@@ -1794,7 +1771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfec7b6f615b8d345890f01b4577c4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   GameOverText: {fileID: 1074225185}
   RestartText: {fileID: 2048003627}
 --- !u!1 &1519860439
@@ -2266,5 +2242,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
-=======
->>>>>>> 0157e661969f8ed0aa365e2f5e058774eb61fec3
