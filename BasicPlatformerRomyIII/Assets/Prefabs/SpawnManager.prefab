@@ -51,11 +51,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517c6753d17e5e146b2af2a33f29b255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   maxPlatforms: 40
   platforms:
   - {fileID: 1135460793742470, guid: 3f1f377a2a52d2444ae972eb1c387f3d, type: 2}
   - {fileID: 1135460793742470, guid: 325fab29727c61744a7d5d4c51971a9b, type: 2}
   - {fileID: 1135460793742470, guid: c1f6b89cb8d8f404e81e08307cf97cde, type: 2}
+=======
+  maxPlatforms: 20
+  platforms:
+  - {fileID: 1135460793742470, guid: 3f1f377a2a52d2444ae972eb1c387f3d, type: 2}
+  - {fileID: 1135460793742470, guid: 325fab29727c61744a7d5d4c51971a9b, type: 2}
+  - {fileID: 1135460793742470, guid: ee42b68bce8175d45a7d90a03f9bb84c, type: 2}
+>>>>>>> 0157e661969f8ed0aa365e2f5e058774eb61fec3
   horizontalMin: 6.5
   horizontalMax: 13
   verticalMin: -5
