@@ -11,16 +11,23 @@ public class GameManager : MonoBehaviour
 
     void Awake()//Is called before Start function
     {
-        boardScript = GetComponent<BoardManager>();//Get the attached BoardManager script
-        InitGame();
+
 
         //Basically prevents there from being more that 1 gamemanager
         if (instance == null)//Check if instance already exists
-            instance = this;//if not, set instance to this
-        else if (instance != this) //If instance already exists and it's not this
+            
+            //if not, set instance to this
+            instance = this;
+        
+        //If instance already exists and it's not this
+        else if (instance != this)
+
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);//Prevents this gameobject from being destroyed when reloading the scene
+
+        boardScript = GetComponent<BoardManager>();//Get the attached BoardManager script
+        InitGame();
     }
 
     void InitGame()//Starts the game.

@@ -23,7 +23,7 @@ public class BoardManager : MonoBehaviour
     public int columns = 8;
     public int rows = 8;
     //Limits for max and min number of walls and food
-    public Count wallCount = new Count(5,9);
+    public Count wallCount = new Count(5, 9);
     public Count foodCount = new Count(1, 5);
 
     public GameObject exit; //for the exit sign
@@ -31,9 +31,9 @@ public class BoardManager : MonoBehaviour
     //A bunch of arrays for the sprites
     public GameObject[] floorTiles;
     public GameObject[] wallTiles;
-    public GameObject[] outterWallTiles;
     public GameObject[] foodTiles;
     public GameObject[] enemyTiles;
+    public GameObject[] outerWallTiles;
 
     private Transform boardHolder; //for the Board object
     private List<Vector3> gridPositions = new List<Vector3>(); //A list of possible locations to place tiles.
@@ -44,10 +44,10 @@ public class BoardManager : MonoBehaviour
         gridPositions.Clear(); //clears list
 
         //Loop through x axis (columns).
-        for (int x = 1; x < columns -1; x++)
+        for (int x = 1; x < columns - 1; x++)
         {
             //Within each column, loop through y axis (rows).
-            for (int y = 1; x< rows -1; y++)
+            for (int y = 1; y < rows - 1; y++)
             {
                 //At each index add a new Vector3 to our list with the x and y coordinates of that position.
                 gridPositions.Add(new Vector3(x, y, 0f));
@@ -61,19 +61,19 @@ public class BoardManager : MonoBehaviour
         boardHolder = new GameObject("Board").transform;
 
         //Loop along x axis, starting from -1 (to fill corner) with floor or outerwall edge tiles.
-        for (int x = 1; x < columns + 1; x++)
+        for (int x = -1; x < columns + 1; x++)
         {
             //Loop along y axis, starting from -1 to place floor or outerwall tiles.
-            for (int y = 1; x < rows + 1; y++)
+            for (int y = -1; y < rows + 1; y++)
             {
                 //Chooses a random tiles from the array
                 GameObject toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
-                //Makes sure that only outter walls spawn at the edges
+                //Makes sure that only outer walls spawn at the edges
                 if (x == -1 || x == columns || y == -1 || y == rows)
-                    toInstantiate = outterWallTiles[Random.Range(0, outterWallTiles.Length)];
+                    toInstantiate = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
 
                 //Places all of the objects
-                GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0.0f), Quaternion.identity) as GameObject;
+                GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
 
                 //Parents all of the gameobjects to 'boardHolder', for organization.
                 instance.transform.SetParent(boardHolder);
@@ -111,8 +111,8 @@ public class BoardManager : MonoBehaviour
         InitialiseList(); //Reset our list of gridpositions.
 
         //Instantiates a random number of wall and food tiles at random positions
-        LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);        
-        LayoutObjectAtRandom(foodTiles, foodCount.minimum, foodCount.maximum); 
+        LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
+        LayoutObjectAtRandom(foodTiles, foodCount.minimum, foodCount.maximum);
 
         //Instantiates a random number of enemies at random positions
         int enemyCount = (int)Mathf.Log(level, 2f);
