@@ -24,11 +24,15 @@ namespace Completed
 				maximum = max;
 			}
 		}
-		
-		
-		public int columns = 8; 										//Number of columns in our game board.
-		public int rows = 8;											//Number of rows in our game board.
-		public Count wallCount = new Count (5, 9);						//Lower and upper limit for our random number of walls per level.
+
+
+        //private int columns = randomColumns; 										//Number of columns in our game board.
+        //private int rows = randomRows;											//Number of rows in our game board.
+
+        public int columns;
+        public int rows;
+
+        public Count wallCount = new Count (5, 9);						//Lower and upper limit for our random number of walls per level.
 		public Count foodCount = new Count (1, 5);						//Lower and upper limit for our random number of food items per level.
 		public GameObject exit;											//Prefab to spawn for exit.
 		public GameObject[] floorTiles;									//Array of floor prefabs.
@@ -39,8 +43,7 @@ namespace Completed
 		
 		private Transform boardHolder;									//A variable to store a reference to the transform of our Board object.
 		private List <Vector3> gridPositions = new List <Vector3> ();	//A list of possible locations to place tiles.
-		
-		
+
 		//Clears our list gridPositions and prepares it to generate a new board.
 		void InitialiseList ()
 		{
@@ -59,6 +62,19 @@ namespace Completed
 			}
 		}
 		
+        void Awake ()
+        {
+            RandomGenerate();
+        }
+
+
+        public void RandomGenerate ()
+        {
+            columns = Random.Range(8, 16);
+            rows = Random.Range(8, 16);
+        }
+
+
 		
 		//Sets up the outer walls and floor (background) of the game board.
 		void BoardSetup ()
