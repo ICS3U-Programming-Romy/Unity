@@ -16,6 +16,7 @@ TagManager:
   - Rocket
   - Boundary
   - ScoreText
+  - Asteroid
   layers:
   - Default
   - TransparentFX

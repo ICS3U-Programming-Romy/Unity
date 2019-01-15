@@ -30,7 +30,13 @@ public class DestroyByContact : MonoBehaviour
     //Creates explosion effect when the asteroid hits another collider
     void OnTriggerEnter(Collider other)
         {
-            //Prevents the Boundary from activating the rest of the code. Will ignore the Boundary's collider
+
+        if (other.CompareTag("Asteroid") || other.CompareTag("Asteroid"))
+        {
+            return;
+        }
+
+        //Prevents the Boundary from activating the rest of the code. Will ignore the Boundary's collider
         if (other.CompareTag ("Boundary") || other.CompareTag("Enemy"))
             {
               return;

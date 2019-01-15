@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114039159108039176}
   m_Layer: 0
   m_Name: AsteroidBlue
-  m_TagString: Untagged
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc406684b7c851447a259fd8aaaec8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -16
+  speed: -17
 --- !u!114 &114244785053918054
 MonoBehaviour:
   m_ObjectHideFlags: 1
