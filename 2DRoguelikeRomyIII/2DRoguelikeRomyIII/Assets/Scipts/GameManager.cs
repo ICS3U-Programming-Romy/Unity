@@ -6,8 +6,10 @@ public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance = null; //Static instance of GameManager which allows it to be accessed by any other script.
-    private BoardManager boardScript;   //Reference to the BoardManager, to set up the level.
+    public BoardManager boardScript;   //Reference to the BoardManager, to set up the level.
     private int level = 3; //The Level Number
+    public int playerFoodPoints = 100;
+    [HideInInspector] public bool playersTurn = true;
 
     void Awake()//Is called before Start function
     {
@@ -35,5 +37,10 @@ public class GameManager : MonoBehaviour
         //Call the SetupScene function of the BoardManager script.
         boardScript.SetupScene(level);
 
+    }
+
+    public void GameOVer()
+    {
+        enabled = false;
     }
 }
