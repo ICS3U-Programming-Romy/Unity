@@ -1,181 +1,112 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class Player : MovingObject {
 
     public float restartLevelDelay = 1f;        //Delay time in seconds to restart level.
-    public int pointsPerFood = 10;              //Number of points to add to player food points when picking up a food object.
-    public int pointsPerSoda = 20;              //Number of points to add to player food points when picking up a soda object.
-    public int wallDamage = 1;                  //How much damage a player does to a wall when chopping it.
+    public int wallDamage = 1;  //The damage that the player does to the wall.
+    public int pointsPerFood = 10; //Increases the food points when food is picked up.
+    public int pointsPerSoda = 20; //Increases the food points when soda is picked up.
+
+    private int food; //Stores th player's food score.
+    private Animator animator;
 
 
-    private Animator animator;                  //Used to store a reference to the Player's animator component.
-    private int food;                           //Used to store player food points total during level.
-
-
-    //Start overrides the Start function of MovingObject
     protected override void Start()
     {
-        //Get a component reference to the Player's animator component
         animator = GetComponent<Animator>();
-
-        //Get the current food point total stored in GameManager.instance between levels.
         food = GameManager.instance.playerFoodPoints;
 
-        //Call the Start function of the MovingObject base class.
         base.Start();
     }
 
 
-    //This function is called when the behaviour becomes disabled or inactive.
-    private void OnDisable()
+
+    private void OnDisable()//This function is called when the behaviour becomes disabled or inactive.
     {
-        //When Player object is disabled, store the current local food total in the GameManager so it can be re-loaded in next level.
-        GameManager.instance.playerFoodPoints = food;
+        GameManager.instance.playerFoodPoints = food;//When Player object is disabled, store the food points
     }
 
-
-    private void Update()
-    {
-        //If it's not the player's turn, exit the function.
-        if (!GameManager.instance.playersTurn) return;
-
-        int horizontal = 0;     //Used to store the horizontal move direction.
-        int vertical = 0;       //Used to store the vertical move direction.
-
-
-        //Get input from the input manager, round it to an integer and store in horizontal to set x axis move direction
-        horizontal = (int)(Input.GetAxisRaw("Horizontal"));
-
-        //Get input from the input manager, round it to an integer and store in vertical to set y axis move direction
-        vertical = (int)(Input.GetAxisRaw("Vertical"));
-
-        //Check if moving horizontally, if so set vertical to zero.
-        if (horizontal != 0)
-        {
-            vertical = 0;
-        }
-
-        //Check if we have a non-zero value for horizontal or vertical
-        if (horizontal != 0 || vertical != 0)
-        {
-            //Call AttemptMove passing in the generic parameter Wall, since that is what Player may interact with if they encounter one (by attacking it)
-            //Pass in horizontal and vertical as parameters to specify the direction to move Player in.
-            AttemptMove<Wall>(horizontal, vertical);
-        }
-    }
-
-    //AttemptMove overrides the AttemptMove function in the base class MovingObject
-    //AttemptMove takes a generic parameter T which for Player will be of the type Wall, it also takes integers for x and y direction to move in.
-    protected override void AttemptMove<T>(int xDir, int yDir)
-    {
-        //Every time player moves, subtract from food points total.
-        food--;
-
-        //Call the AttemptMove method of the base class, passing in the component T (in this case Wall) and x and y direction to move.
-        base.AttemptMove<T>(xDir, yDir);
-
-        //Hit allows us to reference the result of the Linecast done in Move.
-        RaycastHit2D hit;
-
-        //If Move returns true, meaning Player was able to move into an empty space.
-        if (Move(xDir, yDir, out hit))
-        {
-            //Call RandomizeSfx of SoundManager to play the move sound, passing in two audio clips to choose from.
-        }
-
-        //Since the player has moved and lost food points, check if the game has ended.
-        CheckIfGameOver();
-
-        //Set the playersTurn boolean of GameManager to false now that players turn is over.
-        GameManager.instance.playersTurn = false;
-    }
-
-
-    //OnCantMove overrides the abstract function OnCantMove in MovingObject.
-    //It takes a generic parameter T which in the case of Player is a Wall which the player can attack and destroy.
-    protected override void OnCantMove<T>(T component)
-    {
-        //Set hitWall to equal the component passed in as a parameter.
-        Wall hitWall = component as Wall;
-
-        //Call the DamageWall function of the Wall we are hitting.
-        hitWall.DamageWall(wallDamage);
-
-        //Set the attack trigger of the player's animation controller in order to play the player's attack animation.
-        animator.SetTrigger("playerChop");
-    }
-
-
-    //OnTriggerEnter2D is sent when another object enters a trigger collider attached to this object (2D physics only).
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        //Check if the tag of the trigger collided with is Exit.
-        if (other.tag == "Exit")
-        {
-            //Invoke the Restart function to start the next level with a delay of restartLevelDelay (default 1 second).
-            Invoke("Restart", restartLevelDelay);
-
-            //Disable the player object since level is over.
-            enabled = false;
-        }
-
-        //Check if the tag of the trigger collided with is Food.
-        else if (other.tag == "Food")
-        {
-            //Add pointsPerFood to the players current food total.
-            food += pointsPerFood;
-
-            //Disable the food object the player collided with.
-            other.gameObject.SetActive(false);
-        }
-
-        //Check if the tag of the trigger collided with is Soda.
-        else if (other.tag == "Soda")
-        {
-            //Add pointsPerSoda to players food points total
-            food += pointsPerSoda;
-
-
-            //Disable the soda object the player collided with.
-            other.gameObject.SetActive(false);
-        }
-    }
-
-
-    //Restart reloads the scene when called.
-    private void Restart()
-    {
-        //Load the last scene loaded, in this case Main, the only scene in the game.
-        SceneManager.LoadScene(0);
-    }
-
-
-    //LoseFood is called when an enemy attacks the player.
-    //It takes a parameter loss which specifies how many points to lose.
-    public void LoseFood(int loss)
-    {
-        //Set the trigger for the player animator to transition to the playerHit animation.
-        animator.SetTrigger("playerHit");
-
-        //Subtract lost food points from the players total.
-        food -= loss;
-
-        //Check to see if game has ended.
-        CheckIfGameOver();
-    }
-
-
-    //CheckIfGameOver checks if the player is out of food points and if so, ends the game.
     private void CheckIfGameOver()
     {
-        //Check if food point total is less than or equal to zero.
-        if (food <= 0)
+        if (food <= 0) //when food is less than or equal to 0, GameOver
         {
-
-            //Call the GameOver function of GameManager.
             GameManager.instance.GameOver();
         }
     }
 
+    public void LoseFood(int loss) //Runs when the player is hit by an enemy and specifies how much food is lost
+    {
+        animator.SetTrigger("playerHit"); //Set the trigger for the player animator to transition to the playerHit animation.
+        food -= loss; //Depletes the player's food score
+        CheckIfGameOver(); //Check to see if game has ended.
+    }
+
+
+    private void Restart()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {//All these check what object the player is touching. Either the exit, food, or soda.
+
+        if (other.tag == "Exit")//If the player touches the exit, it restarts the level.
+        {
+            Invoke("Restasrt", restartLevelDelay);
+            enabled = false;
+        }
+
+        else if (other.tag == "Food")//if the player touches food, increase the food total and disable the gameobject.
+        {
+            food += pointsPerFood;
+            other.gameObject.SetActive(false);
+        }
+
+        else if (other.tag == "Soda")//if the player touches soda, increase the food total and disable the gameobject.
+        { }
+        food += pointsPerSoda;
+        other.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (!GameManager.instance.playersTurn) return; //return if it's not the player's turn
+
+        int horizontal = 0;     //Used to store the horizontal move direction.
+        int vertical = 0;       //Used to store the vertical move direction.
+
+        horizontal = (int)(Input.GetAxisRaw("Horizontal")); //Get input from the input manager and store in horizontal to set x axis move direction
+        vertical = (int)(Input.GetAxisRaw("Vertical"));//Get input from the input manager and store in vertical to set y axis move direction
+
+        if (horizontal != 0) //prevents the player from moving diagonaly. 
+        {//if player is moving horizontally, i.e. horizontal is not 0, then the player can't/isn't allowed to move vertically
+            vertical = 0;
+        }
+
+        if (horizontal != 0 || vertical != 0) //Check if we have a non-zero value for horizontal or vertical
+        {
+            AttemptMove<Wall>(horizontal, vertical);//when the player tries to move, it calls the AttemptMove function.
+        }
+    }
+
+
+    protected override void AttemptMove<T>(int xDir, int yDir)
+    {
+        food--;//removes food when player moves.
+        base.AttemptMove<T>(xDir, yDir);
+        RaycastHit2D hit;//Reference the line cast done in move.
+
+        CheckIfGameOver();
+        GameManager.instance.playersTurn = false;
+    }
+
+    protected override void OnCantMove<T>(T component)
+    {
+        Wall hitWall = component as Wall;//Set hitWall to equal the component passed in as a parameter.
+        hitWall.DamageWall(wallDamage);//Call the DamageWall function of the Wall we are hitting.
+        animator.SetTrigger("playerChop");//Set the attack trigger of the player's animation controller in order to play the player's attack animation.
+    }
 }
