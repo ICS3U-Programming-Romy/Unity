@@ -1,17 +1,18 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : MovingObject {
+public class Player : MovingObject
+{
 
     public float restartLevelDelay = 1f;        //Delay time in seconds to restart level.
     public int wallDamage = 1;  //The damage that the player does to the wall.
     public int pointsPerFood = 10; //Increases the food points when food is picked up.
     public int pointsPerSoda = 20; //Increases the food points when soda is picked up.
 
-    private int food; //Stores th player's food score.
     private Animator animator;
+    private int food;  //Stores the player's score
+
 
 
     protected override void Start()
@@ -29,47 +30,7 @@ public class Player : MovingObject {
         GameManager.instance.playerFoodPoints = food;//When Player object is disabled, store the food points
     }
 
-    private void CheckIfGameOver()
-    {
-        if (food <= 0) //when food is less than or equal to 0, GameOver
-        {
-            GameManager.instance.GameOver();
-        }
-    }
 
-    public void LoseFood(int loss) //Runs when the player is hit by an enemy and specifies how much food is lost
-    {
-        animator.SetTrigger("playerHit"); //Set the trigger for the player animator to transition to the playerHit animation.
-        food -= loss; //Depletes the player's food score
-        CheckIfGameOver(); //Check to see if game has ended.
-    }
-
-
-    private void Restart()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {//All these check what object the player is touching. Either the exit, food, or soda.
-
-        if (other.tag == "Exit")//If the player touches the exit, it restarts the level.
-        {
-            Invoke("Restasrt", restartLevelDelay);
-            enabled = false;
-        }
-
-        else if (other.tag == "Food")//if the player touches food, increase the food total and disable the gameobject.
-        {
-            food += pointsPerFood;
-            other.gameObject.SetActive(false);
-        }
-
-        else if (other.tag == "Soda")//if the player touches soda, increase the food total and disable the gameobject.
-        { }
-        food += pointsPerSoda;
-        other.gameObject.SetActive(false);
-    }
 
     private void Update()
     {
@@ -93,6 +54,7 @@ public class Player : MovingObject {
     }
 
 
+
     protected override void AttemptMove<T>(int xDir, int yDir)
     {
         food--;//removes food when player moves.
@@ -103,10 +65,61 @@ public class Player : MovingObject {
         GameManager.instance.playersTurn = false;
     }
 
+
+
     protected override void OnCantMove<T>(T component)
     {
         Wall hitWall = component as Wall;//Set hitWall to equal the component passed in as a parameter.
         hitWall.DamageWall(wallDamage);//Call the DamageWall function of the Wall we are hitting.
         animator.SetTrigger("playerChop");//Set the attack trigger of the player's animation controller in order to play the player's attack animation.
+    }
+
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {//All these check what object the player is touching. Either the exit, food, or soda.
+
+        if (other.tag == "Exit")//If the player touches the exit, it restarts the level.
+        {
+            Invoke("Restasrt", restartLevelDelay);
+            enabled = false;
+        }
+
+        else if (other.tag == "Food")//if the player touches food, increase the food total and disable the gameobject.
+        {
+            food += pointsPerFood;
+            other.gameObject.SetActive(false);
+        }
+
+        else if (other.tag == "Soda")//if the player touches soda, increase the food total and disable the gameobject.
+        { }
+        food += pointsPerSoda;
+        other.gameObject.SetActive(false);
+    }
+
+
+
+    private void Restart()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+
+
+    public void LoseFood(int loss) //Runs when the player is hit by an enemy and specifies how much food is lost
+    {
+        animator.SetTrigger("playerHit"); //Set the trigger for the player animator to transition to the playerHit animation.
+        food -= loss; //Depletes the player's food score
+        CheckIfGameOver(); //Check to see if game has ended.
+    }
+
+
+
+    private void CheckIfGameOver()
+    {
+        if (food <= 0) //when food is less than or equal to 0, GameOver
+        {
+            GameManager.instance.GameOver();
+        }
     }
 }
