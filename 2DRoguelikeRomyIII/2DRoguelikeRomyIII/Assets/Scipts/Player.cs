@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Player : MovingObject
@@ -39,26 +40,23 @@ public class Player : MovingObject
         int horizontal = 0;     //Used to store the horizontal move direction.
         int vertical = 0;       //Used to store the vertical move direction.
 
-        horizontal = (int)(Input.GetAxisRaw("Horizontal")); //Get input from the input manager and store in horizontal to set x axis move direction
-        vertical = (int)(Input.GetAxisRaw("Vertical"));//Get input from the input manager and store in vertical to set y axis move direction
+        horizontal = (int) (Input.GetAxisRaw("Horizontal")); //Get input from the input manager and store in horizontal to set x axis move direction
+        vertical = (int) (Input.GetAxisRaw("Vertical"));//Get input from the input manager and store in vertical to set y axis move direction
 
         if (horizontal != 0) //prevents the player from moving diagonaly. 
-        {//if player is moving horizontally, i.e. horizontal is not 0, then the player can't/isn't allowed to move vertically
-            vertical = 0;
-        }
+            vertical = 0;//if player is moving horizontally, i.e. horizontal is not 0, then the player can't/isn't allowed to move vertically
+
 
         if (horizontal != 0 || vertical != 0) //Check if we have a non-zero value for horizontal or vertical
-        {
-            AttemptMove<Wall>(horizontal, vertical);//when the player tries to move, it calls the AttemptMove function.
-        }
+            AttemptMove<Wall> (horizontal, vertical);//when the player tries to move, it calls the AttemptMove function.
     }
 
 
 
-    protected override void AttemptMove<T>(int xDir, int yDir)
+    protected override void AttemptMove <T> (int xDir, int yDir)
     {
         food--;//removes food when player moves.
-        base.AttemptMove<T>(xDir, yDir);
+        base.AttemptMove <T> (xDir, yDir);
         RaycastHit2D hit;//Reference the line cast done in move.
 
         CheckIfGameOver();
@@ -67,7 +65,7 @@ public class Player : MovingObject
 
 
 
-    protected override void OnCantMove<T>(T component)
+    protected override void OnCantMove <T> (T component)
     {
         Wall hitWall = component as Wall;//Set hitWall to equal the component passed in as a parameter.
         hitWall.DamageWall(wallDamage);//Call the DamageWall function of the Wall we are hitting.
@@ -81,7 +79,7 @@ public class Player : MovingObject
 
         if (other.tag == "Exit")//If the player touches the exit, it restarts the level.
         {
-            Invoke("Restasrt", restartLevelDelay);
+            Invoke("Restart", restartLevelDelay);
             enabled = false;
         }
 
@@ -101,8 +99,9 @@ public class Player : MovingObject
 
     private void Restart()
     {
-        SceneManager.LoadScene(0);
-    }
+        SceneManager.LoadScene (0);
+  
+  }
 
 
 
