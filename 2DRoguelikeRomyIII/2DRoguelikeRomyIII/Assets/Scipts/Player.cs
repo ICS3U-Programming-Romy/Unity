@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Player : MovingObject
 {
 
-    public float restartLevelDelay = 1f;        //Delay time in seconds to restart level.
+    public float restartLevelDelay = 3f;        //Delay time in seconds to restart level.
     public int wallDamage = 1;  //The damage that the player does to the wall.
     public int pointsPerFood = 10; //Increases the food points when food is picked up.
     public int pointsPerSoda = 20; //Increases the food points when soda is picked up.
@@ -35,7 +35,10 @@ public class Player : MovingObject
 
     private void Update()
     {
-        if (!GameManager.instance.playersTurn) return; //return if it's not the player's turn
+        if (!GameManager.instance.playersTurn)
+        {
+            return; //return if it's not the player's turn
+        }
 
         int horizontal = 0;     //Used to store the horizontal move direction.
         int vertical = 0;       //Used to store the vertical move direction.

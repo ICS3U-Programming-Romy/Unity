@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2DRoguelikeRomyIII", "2DRoguelikeRomyIII.csproj", "{850CADF2-9C69-5E99-21E8-EC734361FBD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2DRoguelikeRomyIII.Editor", "2DRoguelikeRomyIII.Editor.csproj", "{AA4F0679-4461-0B32-2C98-5150AB804CA5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{850CADF2-9C69-5E99-21E8-EC734361FBD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{850CADF2-9C69-5E99-21E8-EC734361FBD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{850CADF2-9C69-5E99-21E8-EC734361FBD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{850CADF2-9C69-5E99-21E8-EC734361FBD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA4F0679-4461-0B32-2C98-5150AB804CA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA4F0679-4461-0B32-2C98-5150AB804CA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA4F0679-4461-0B32-2C98-5150AB804CA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA4F0679-4461-0B32-2C98-5150AB804CA5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
