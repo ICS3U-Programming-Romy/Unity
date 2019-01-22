@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DeathTrigger : MonoBehaviour
 {//some variables for the restart and game over text
@@ -21,10 +22,20 @@ public class DeathTrigger : MonoBehaviour
         if (reStart) //Script that allows the player to restart.
         {
             GameOverText.text = "Game Over"; //Shows the player "GAME OVER"
-            RestartText.text = "Press 'R' to Restart"; //Shows the restart text.
-            if (Input.GetKeyDown(KeyCode.R))// if the 'R' key is pushed down, it reloads the game.
+            RestartText.text = "Press 'R' to Restart \n Press 'Esc' to Exit    \n Press 'M' for Menu   "; //Shows the restart text.
+            if (Input.GetKeyDown(KeyCode.R))
             {
-                Application.LoadLevel(Application.loadedLevel);
+                SceneManager.LoadScene(1);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                SceneManager.LoadScene(0);
             }
         }
     }

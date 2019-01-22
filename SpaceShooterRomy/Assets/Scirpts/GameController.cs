@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;  //This is required to change the text in a canvas/text box.
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -52,7 +52,17 @@ public class GameController : MonoBehaviour
         {
             if (Input.GetKeyDown (KeyCode.R))
             {
-                Application.LoadLevel(Application.loadedLevel);
+                SceneManager.LoadScene(1);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+
+            if (Input.GetKeyDown (KeyCode.M))
+            {
+                SceneManager.LoadScene(0);
             }
         }
     }
@@ -77,8 +87,6 @@ public class GameController : MonoBehaviour
             //Breaks the while loop to end the game.
             if (gameOver) //If the game ends, code is executed
             {
-                RestartText.text = "Press 'R' to Restart"; //Shows the restart text.
-                reStart = true;
                 break; //Breaks the loop.
             }
         }
@@ -97,7 +105,10 @@ public class GameController : MonoBehaviour
     //Function that allows the game to end when the player is destroyed.
     public void GameOver ()
     {
-        GameOverText.text = "Game Over"; //Shows the player "GAME OVER"
         gameOver = true;
+        reStart = true;
+        GameOverText.text = "Game Over"; //Shows the player "GAME OVER"
+        RestartText.text = "Press 'R' to Restart \n Press 'Esc' to Exit   \n Press 'M' for Menu  " ; //Shows the restart text.
+
     }
 }

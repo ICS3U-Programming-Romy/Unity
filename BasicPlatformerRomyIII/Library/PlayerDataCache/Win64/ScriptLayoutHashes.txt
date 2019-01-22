@@ -1,8 +1,9 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/s243855/Desktop/BasicPlatformerRomyIII/BuiltGame/BasicPlatformerRomyIII.exe
+C:/Users/s243855/Desktop/Built Games/BasicPlatformer/BasicPlatformerRomyIII.exe
 SceneListBegin?
-Assets/Scenes/Level.unity
+Assets/Scenes/Menu.unity
+Assets/Scenes/Level1.unity
 SceneListEnd?
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 7b803eb2910e9b4cd5e521ae07b9f7d6 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
@@ -174,3 +175,19 @@ bdc728f0231234ee6b33e8ff5d6c25cb Assembly-CSharp.dll:.CoinSpawn
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 e167716dc60cace4e3a83b9f1d8eedfd Assembly-CSharp.dll:.DeathTrigger
+e8d6110fa2aff80622f8ec13f910ae12 Assembly-CSharp.dll:.FlexibleUISlider
+f0475bd9900b84310eb5e3e0379fcde9 Assembly-CSharp.dll:.FlexibleUIText
+8f48c545349cae35e4f01483d46a8223 Assembly-CSharp.dll:.SetAudioLevels
+96e4b03ef0ab380e405f1a83f7f87a2d Assembly-CSharp.dll:.MenuObject
+e8d6110fa2aff80622f8ec13f910ae12 Assembly-CSharp.dll:.FlexibleUIImage
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.QuitApplication
+fba91ceee2a2117ae9fb5bcf2214f55c Assembly-CSharp.dll:.StartOptions
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.Pause
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.DontDestroy
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.EventSystemChecker
+052b29d960fd029ce197460a47451d64 Assembly-CSharp.dll:.PlayMusic
+9d416adb1a8dbd9b736f5da8f9da13ea Assembly-CSharp.dll:.ShowPanels
+e8d6110fa2aff80622f8ec13f910ae12 Assembly-CSharp.dll:.FlexibleUIButton
+31f9c5fdcd3834b85df147f83d5dd147 Assembly-CSharp.dll:.MenuSettings
+3c48e2fe8345d5a64028649a77b086e2 Assembly-CSharp.dll:.FlexibleUIData
+e8d6110fa2aff80622f8ec13f910ae12 Assembly-CSharp.dll:.FlexibleUI
